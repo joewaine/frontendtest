@@ -1,7 +1,9 @@
 import axios from 'axios'
 
-// const baseUrl = 'http://localhost:3001/persons'
-const baseUrl = 'http://localhost:3001/persons'
+
+const baseUrl = process.env.REACT_APP_API_BASE_URL
+
+console.log('BASE URL:', process.env.REACT_APP_API_BASE_URL)
 
 
 const getAll = () => {

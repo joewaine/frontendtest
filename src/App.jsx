@@ -6,26 +6,25 @@ import Notification from './components/Notification'
 
 const App = () => {
 
-  const [notes, setNotes] = useState(null)
+  const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('a new note...') 
   const [showAll, setShowAll] = useState(true)
-  const [errorMessage, setErrorMessage] = useState('')
-  
+  const [errorMessage, setErrorMessage] = useState(null)
 
-  useEffect(() => {
-    noteService
-    .getAll()
-    .then(initialNotes => {
-      // console.log(initialNotes)
-    setNotes(initialNotes)
+useEffect(() => {
+  noteService.getAll().then(data => {
+    console.log('getAll type:', typeof data)
+    console.log('getAll isArray?', Array.isArray(data))
+    console.log('getAll value:', data)
+    if (data && typeof data === 'object') {
+      console.log('getAll keys:', Object.keys(data))
+    }
+    setNotes(data)
   })
+}, [])
 
 
-  }, [])
   
-   if (!notes) { 
-    return null 
-  }
 
   // console.log(notes)
   // console.log('render', notes.length, 'notes')
