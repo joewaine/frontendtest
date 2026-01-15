@@ -28,8 +28,8 @@ const update = (id, newObject) => {
 
 const deleteItem = (id) => {
 //   return axios.delete(`${baseUrl}/${id}`)
-
-  return axios.delete(`${baseUrl}/delete/${id}`)
+console.log(baseUrl)
+  return axios.delete(`${baseUrl}/${id}`)
 
 
 }

@@ -55,35 +55,31 @@ useEffect(() => {
     const note = notes.find((n) => n.id === id)
     const changedNote = { ...note, important: !note.important }
 
-    noteService
-      .update(id, changedNote)
-      .then((returnedNote) => {
-        setNotes(notes.map((note) => (note.id !== id ? note : returnedNote)))
-      })
-      .catch((error) => {
-          console.log('you got here catch')
-        setErrorMessage(
-          `Note '${note.content}' was already removed from server`
-        )
-        setTimeout(() => {
-          console.log('you got here timeout')
-          setErrorMessage(null)
-        }, 5000)
-        setNotes(notes.filter((n) => n.id !== id))
-      })
+    // noteService
+    //   .update(id, changedNote)
+    //   .then((returnedNote) => {
+    //     setNotes(notes.map((note) => (note.id !== id ? note : returnedNote)))
+    //   })
+    //   .catch((error) => {
+    //       console.log('you got here catch')
+    //     setErrorMessage(
+    //       `Note '${note.content}' was already removed from server`
+    //     )
+    //     setTimeout(() => {
+    //       console.log('you got here timeout')
+    //       setErrorMessage(null)
+    //     }, 5000)
+    //     setNotes(notes.filter((n) => n.id !== id))
+    //   })
   }
   
+
+            
   const deleteNote = (id) => {
 
-
     noteService.deleteItem(id).then(response => {
-      const filteredNotes = notes.filter(note => note.id !== id);
-
-
-      setNotes(filteredNotes)
-
-      
-
+    const filteredNotes = notes.filter(note => note.id !== id);
+    setNotes(filteredNotes)
 
       });
 
@@ -113,7 +109,7 @@ useEffect(() => {
             note={note.content} 
             important={note.important}
             toggleImportance={() => toggleImportanceOf(note.id)}
-            delete={() => deleteNote(note.id)}
+            deleteNote={() => deleteNote(note.id)}
           />
         )}
       </ul>
