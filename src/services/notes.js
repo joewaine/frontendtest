@@ -10,7 +10,7 @@ console.log('BASE URL:', process.env.REACT_APP_API_BASE_URL)
 
 const getAll = () => {
     console.log('gettingall')
-    const request = axios.get(`${baseUrl}notes`)
+    const request = axios.get(`${baseUrl}`)
     return request.then(response => response.data)
 
 
@@ -20,7 +20,7 @@ const getAll = () => {
 
 const create = newObject => {
 
-    const request = axios.post(`${baseUrl}notes`, newObject)
+    const request = axios.post(`${baseUrl}`, newObject)
     return request.then(response => response.data)
 }
 
@@ -32,7 +32,7 @@ const update = (id, newObject) => {
 
 
 const deleteItem = (id) => {
-  return axios.delete(`${baseUrl}notes/${id}`)
+  return axios.delete(`${baseUrl}/${id}`)
 }
 
 
