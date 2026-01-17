@@ -5,7 +5,6 @@ import noteService from './services/notes'
 import Notification from './components/Notification'
 
 const App = () => {
-
   const [notes, setNotes] = useState([])
   const [newNote, setNewNote] = useState('a new note...') 
   const [showAll, setShowAll] = useState(true)
@@ -29,6 +28,7 @@ useEffect(() => {
   // console.log(notes)
   // console.log('render', notes.length, 'notes')
   const notesToShow = showAll ? notes : notes.filter(note => note.important === true);
+console.log('notesToShow',notesToShow)
 
   const addNote = (event) => {
     event.preventDefault();
@@ -52,8 +52,8 @@ useEffect(() => {
   }
 
     const toggleImportanceOf = (id) => {
-    const note = notes.find((n) => n.id === id)
-    const changedNote = { ...note, important: !note.important }
+    // const note = notes.find((n) => n.id === id)
+    // const changedNote = { ...note, important: !note.important }
 
     // noteService
     //   .update(id, changedNote)
@@ -78,7 +78,7 @@ useEffect(() => {
   const deleteNote = (id) => {
 
     noteService.deleteItem(id).then(response => {
-    const filteredNotes = notes.filter(note => note.id !== id);
+    const filteredNotes = notes.filter(note => note._id !== id);
     setNotes(filteredNotes)
 
       });
@@ -104,12 +104,13 @@ useEffect(() => {
       <ul>
         {notesToShow.map(note =>
           // <Note key={note.id} note={note.content} id={note.id} toggleImportance={toggleImportanceOf} />
+       
           <Note
-            key={note.id}
+            key={note._id}
             note={note.content} 
             important={note.important}
-            toggleImportance={() => toggleImportanceOf(note.id)}
-            deleteNote={() => deleteNote(note.id)}
+            toggleImportance={() => toggleImportanceOf(note._id)}
+            deleteNote={() => deleteNote(note._id)}
           />
         )}
       </ul>

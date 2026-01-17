@@ -9,13 +9,18 @@ console.log('BASE URL:', process.env.REACT_APP_API_BASE_URL)
 // const baseUrl = 'http://localhost:3001/persons'
 
 const getAll = () => {
-    const request = axios.get(baseUrl)
+    console.log('gettingall')
+    const request = axios.get(`${baseUrl}notes`)
     return request.then(response => response.data)
+
+
+
+
 }
 
 const create = newObject => {
 
-    const request = axios.post(`${baseUrl}/post`, newObject)
+    const request = axios.post(`${baseUrl}notes`, newObject)
     return request.then(response => response.data)
 }
 
@@ -27,11 +32,7 @@ const update = (id, newObject) => {
 
 
 const deleteItem = (id) => {
-//   return axios.delete(`${baseUrl}/${id}`)
-console.log(baseUrl)
-  return axios.delete(`${baseUrl}/${id}`)
-
-
+  return axios.delete(`${baseUrl}notes/${id}`)
 }
 
 
