@@ -10,7 +10,9 @@ console.log('BASE URL:', process.env.REACT_APP_API_BASE_URL)
 
 const getAll = async () => {
 
+console.log('got here');
 console.log(baseUrl);
+
   const response = await axios.get(`${baseUrl}`)
   console.log('resp', response.data)
   return response.data
